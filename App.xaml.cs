@@ -9,20 +9,26 @@ public partial class App : System.Windows.Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
-        const string mutexName = "Local\\CodexQuotaWidget.1A8FA33B";
-        _singleInstanceMutex = new Mutex(true, mutexName, out var createdNew);
+        var qaOutputPath = GetQaOutputPath(e.Args);
+        var qaDemo = e.Args.Any(argument =>
+            argument.Equals("--qa-demo", StringComparison.OrdinalIgnoreCase));
 
-        if (!createdNew)
+        if (qaOutputPath is null)
         {
-            Shutdown();
-            return;
+            const string mutexName = "Local\\CodexQuotaWidget.1A8FA33B";
+            _singleInstanceMutex = new Mutex(true, mutexName, out var createdNew);
+
+            if (!createdNew)
+            {
+                Shutdown();
+                return;
+            }
         }
 
         base.OnStartup(e);
-        var qaOutputPath = GetQaOutputPath(e.Args);
         var settings = AppSettings.Load();
         ThemeService.Apply(settings.Theme);
-        var window = new MainWindow(settings, qaOutputPath);
+        var window = new MainWindow(settings, qaOutputPath, qaDemo);
         MainWindow = window;
         window.Show();
     }

@@ -25,6 +25,7 @@ public partial class MainWindow : Window
     private readonly DispatcherTimer _dockTimer;
     private readonly System.Windows.Forms.NotifyIcon _trayIcon;
     private readonly string? _qaOutputPath;
+    private readonly bool _qaDemo;
     private QuotaSnapshot? _lastSnapshot;
     private string? _lastNotificationKey;
     private DateTimeOffset _lastRefreshAt = DateTimeOffset.MinValue;
@@ -34,11 +35,12 @@ public partial class MainWindow : Window
     private bool _isExiting;
     private bool _qaSaved;
 
-    internal MainWindow(AppSettings settings, string? qaOutputPath = null)
+    internal MainWindow(AppSettings settings, string? qaOutputPath = null, bool qaDemo = false)
     {
         _settings = settings;
         InitializeComponent();
         _qaOutputPath = qaOutputPath;
+        _qaDemo = qaDemo;
         DataContext = _viewModel;
         QuotaPopup.DataContext = _viewModel;
         Opacity = 0;
@@ -70,6 +72,29 @@ public partial class MainWindow : Window
         _countdownTimer.Start();
         _dockTimer.Start();
         UpdateDockPosition();
+
+        if (_qaDemo && _qaOutputPath is not null)
+        {
+            var now = DateTimeOffset.Now;
+            var snapshot = new QuotaSnapshot(
+                [
+                    new QuotaWindow("codex:primary", "5 小时额度", 32, 300, now.AddHours(3).AddMinutes(12)),
+                    new QuotaWindow("codex:secondary", "7 天额度", 14, 10_080, now.AddDays(5).AddHours(8))
+                ],
+                "plus",
+                2,
+                "demo-account",
+                "demo@example.com",
+                "chatgpt",
+                now);
+            _lastSnapshot = snapshot;
+            _lastRefreshAt = now;
+            _viewModel.Apply(snapshot);
+            UpdateTrayTooltip(snapshot);
+            await SaveQaArtifactsAndExitAsync(snapshot);
+            return;
+        }
+
         await RefreshAsync();
     }
 
