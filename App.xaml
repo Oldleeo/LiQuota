@@ -1,0 +1,22 @@
+<Application x:Class="CodexQuotaWidget.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Application.Resources>
+        <FontFamily x:Key="UiFont">Segoe UI, Microsoft YaHei UI</FontFamily>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <SolidColorBrush x:Key="BadgeBackground" Color="#FFF7F7F8"/>
+        <SolidColorBrush x:Key="BadgeBorder" Color="#FFDCDDE0"/>
+        <SolidColorBrush x:Key="BadgeText" Color="#FF3F434A"/>
+        <SolidColorBrush x:Key="Chevron" Color="#FF92969D"/>
+        <SolidColorBrush x:Key="PopupBackground" Color="#FFFCFCFD"/>
+        <SolidColorBrush x:Key="PopupBorder" Color="#FFE0E1E3"/>
+        <SolidColorBrush x:Key="TextPrimary" Color="#FF24262B"/>
+        <SolidColorBrush x:Key="TextSecondary" Color="#FF62666E"/>
+        <SolidColorBrush x:Key="TextTertiary" Color="#FF8A8E96"/>
+        <SolidColorBrush x:Key="CardBackground" Color="#FFF3F3F4"/>
+        <SolidColorBrush x:Key="ButtonBackground" Color="#FFF0F0F1"/>
+        <SolidColorBrush x:Key="ButtonHover" Color="#FFE5E5E7"/>
+        <SolidColorBrush x:Key="ErrorBackground" Color="#FFFFF4E5"/>
+        <SolidColorBrush x:Key="ErrorText" Color="#FF9A5B12"/>
+    </Application.Resources>
+</Application>

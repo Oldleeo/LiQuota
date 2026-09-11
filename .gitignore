@@ -1,0 +1,27 @@
+# Build outputs
+bin/
+obj/
+artifacts/
+release/
+发布/
+发布-*/
+
+# Local QA and investigation files
+QA/
+extracted/
+tools/inspect-asar.mjs
+tools/extract-asar-file.mjs
+Assets/*concept*.png
+*.user
+*.suo
+.vs/
+
+# Local settings and logs
+settings.json
+*.log
+
+# OS/editor files
+Thumbs.db
+.DS_Store
+.idea/
+.vscode/
