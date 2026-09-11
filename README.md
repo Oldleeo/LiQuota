@@ -8,6 +8,8 @@ LiQuota 是一个面向 Windows 10/11 的轻量 Codex Desktop 额度徽标。它
 
 LiQuota is a lightweight quota companion for Codex Desktop on Windows 10/11. It docks into the free title-bar area and keeps the most constrained quota visible without modifying Codex itself.
 
+**下载最新版：[GitHub Releases](https://github.com/Oldleeo/LiQuota/releases/latest)**
+
 ## 功能
 
 - 自动读取 Codex Desktop 当前登录账号，界面默认对邮箱做隐私遮罩

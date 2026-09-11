@@ -16,6 +16,7 @@
     <Version>3.0.1</Version>
     <Authors>LiQuota Contributors</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/Oldleeo/LiQuota</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Deterministic>true</Deterministic>
     <PublishSingleFile>true</PublishSingleFile>
